@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{title}}</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 24px;
+        background: #fafafa;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 30px;
+        letter-spacing: 0.5px;
+      }
+
+      .overview-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 32px;
+      }
+
+      .widget {
+        flex: 1;
+        background: white;
+        padding: 18px 22px;
+        margin: 0 8px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+        text-align: center;
+      }
+
+      .widget h3 {
+        margin: 0;
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #555;
+      }
+
+      .widget .value {
+        font-size: 26px;
+        font-weight: bold;
+        color: #000;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      thead {
+        background: #007bff;
+        color: white;
+      }
+
+      th,
+      td {
+        padding: 12px 14px;
+        font-size: 15px;
+        text-align: left;
+      }
+
+      tbody tr:nth-child(even) {
+        background: #f6f8fb;
+      }
+
+      tbody tr:hover {
+        background: #e8efff;
+        transition: 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+
+    <!-- Overview Widgets -->
+    <div class="overview-container">
+      <div class="widget">
+        <h3>Spends</h3>
+        <div class="value">{{spends}}</div>
+      </div>
+
+      <div class="widget">
+        <h3>Estimations</h3>
+        <div class="value">{{estimations}}</div>
+      </div>
+
+      <div class="widget">
+        <h3>Income</h3>
+        <div class="value">{{income}}</div>
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <h2 style="font-size: 22px; margin-bottom: 12px">{{tableTitle}}</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Value</th>
+          <th>Date & Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each items}}
+        <tr>
+          <td>{{category}}</td>
+          <td>{{value}}</td>
+          <td>{{dateTime}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </body>
+</html>
