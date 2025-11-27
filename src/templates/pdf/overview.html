@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{title}}</title>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 24px;
+        background: #fafafa;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 30px;
+      }
+
+      .overview-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 32px;
+      }
+
+      .widget {
+        flex: 1;
+        padding: 18px 22px;
+        margin: 0 8px;
+        border-radius: 14px;
+        color: white;
+        text-align: center;
+        background: linear-gradient(135deg, #007bff, #00b4d8);
+        box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.12);
+      }
+
+      .widget h3 {
+        margin: 0;
+        font-size: 18px;
+        margin-bottom: 8px;
+        font-weight: normal;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .widget .value {
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 6px;
+      }
+
+      .table-block {
+        margin-top: 22px;
+        page-break-inside: avoid;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 14px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      thead {
+        background: linear-gradient(135deg, #007bff, #00b4d8);
+        color: white;
+      }
+
+      th,
+      td {
+        padding: 12px 14px;
+        font-size: 15px;
+        text-align: left;
+      }
+
+      tbody tr:nth-child(even) {
+        background: #f6f8fb;
+      }
+
+      tbody tr:hover {
+        background: #e8efff;
+        transition: 0.3s;
+      }
+
+      .category-cell {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>{{title}}</h1>
+
+    <!-- Overview Widgets -->
+    <div class="overview-container">
+      <div class="widget">
+        <h3><i class="{{spends.icon}}"></i> Spends</h3>
+        <div class="value">{{spends.total}}</div>
+      </div>
+      <div class="widget">
+        <h3><i class="{{estimations.icon}}"></i> Estimations</h3>
+        <div class="value">{{estimations.total}}</div>
+      </div>
+      <div class="widget">
+        <h3><i class="{{income.icon}}"></i> Income</h3>
+        <div class="value">{{income.total}}</div>
+      </div>
+    </div>
+
+    <!-- Tables -->
+    {{#each tables}}
+    <div class="table-block">
+      <h2 style="font-size: 22px; margin-bottom: 12px">{{tableTitle}}</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Value</th>
+            <th>Remarks</th>
+            <th>Date & Time</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {{#each items}}
+          <tr>
+            <td class="category-cell">
+              <i class="{{icon}}"></i>
+              {{category}}
+            </td>
+            <td>{{value}}</td>
+            <td>{{remarks}}</td>
+            <td>{{period}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/each}}
+  </body>
+</html>

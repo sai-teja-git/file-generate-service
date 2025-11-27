@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as puppeteer from 'puppeteer';
+import * as Handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
 import { join } from 'path';
@@ -13,22 +14,32 @@ export interface IPdfOutput {
 
 @Injectable()
 export class PdfService {
-    async generatePdf(data: any, outputPath?: string, fileName?: string): Promise<IPdfOutput> {
-        const browser = await puppeteer.launch();
+
+    async generatePdf(data: any, templateName: string, outputPath?: string, fileName?: string): Promise<IPdfOutput> {
+        const templatePath = join(process.cwd(), 'src/templates/pdf', templateName);
+        const htmlTemplate = fs.readFileSync(templatePath, 'utf-8');
+        const template = Handlebars.compile(htmlTemplate);
+        // Generate HTML output
+        const html = template(data);
+
+        // Launch Puppeteer
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        });
         const page = await browser.newPage();
 
-        // Load your HTML template (e.g., using fs.readFileSync and replacing placeholders)
-        const templatePath = path.join(__dirname, '..', 'templates', 'report.html');
-        let htmlContent = fs.readFileSync(templatePath, 'utf8');
+        // Set HTML content
+        await page.setContent(html, { waitUntil: 'networkidle0' });
 
-        // Replace placeholders with dynamic data (example using simple string replacement)
-        htmlContent = htmlContent.replace('{{account_name}}', data.account_name);
-        htmlContent = htmlContent.replace('{{registered_office}}', data.registered_office);
-        htmlContent = htmlContent.replace('{{pan_number}}', data.pan_number);
+        // Generate PDF
+        const buffer = await page.pdf({
+            format: 'A4',
+            printBackground: true,
+            preferCSSPageSize: true,
+        });
+        await browser.close();
 
-        await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
-
-        const buffer = await page.pdf({ format: 'A4' }); // Customize options as needed
         let fileSaved = false;
         let error: IPdfOutput["error"] = null;
         let filePath: IPdfOutput["filePath"] = null;
@@ -43,7 +54,7 @@ export class PdfService {
                 error = err
             }
         }
-        await browser.close();
+
         return {
             buffer,
             fileSaved,
