@@ -1,81 +1,100 @@
 {
     "title": "Nov,2025 Overall",
-    "spends": {
-        "total": 12500,
-        "data": [
-            {
-                "category": "Car",
-                "value": 10000,
-                "remarks": "EMI",
-                "period": "10-11-2025 11:30",
-                "icon": "fa-solid fa-car"
-            },
-            {
-                "category": "Bike",
-                "value": 500,
-                "remarks": "Petrol",
-                "period": "10-11-2025 18:00",
-                "icon": "fa-solid fa-motorcycle"
-            },
-            {
-                "category": "Home",
-                "value": 2000,
-                "remarks": "Groceries",
-                "period": "10-11-2025 18:25",
-                "icon": "fa-solid fa-house"
-            }
-        ]
-    },
-    "estimations": {
-        "total": 20500,
-        "data": [
-            {
-                "category": "Car",
-                "value": 10000,
-                "remarks": "EMI",
-                "period": "01-11-2025 11:30",
-                "icon": "fa-solid fa-car"
-            },
-            {
-                "category": "Car",
-                "value": 4000,
-                "remarks": "Petrol",
-                "period": "01-11-2025 11:31",
-                "icon": "fa-solid fa-car"
-            },
-            {
-                "category": "Bike",
-                "value": 1500,
-                "remarks": "Petrol",
-                "period": "01-11-2025 11:31",
-                "icon": "fa-solid fa-motorcycle"
-            },
-            {
-                "category": "Home",
-                "value": 5000,
-                "remarks": "Groceries",
-                "period": "01-11-2025 13:16",
-                "icon": "fa-solid fa-house"
-            }
-        ]
-    },
-    "income": {
-        "total": 20500,
-        "data": [
-            {
-                "category": "Salary",
-                "value": 20000,
-                "remarks": "Nov Salary",
-                "period": "01-11-2025 11:00",
-                "icon": "fa-solid fa-wallet"
-            },
-            {
-                "category": "House",
-                "value": 2500,
-                "remarks": "Rent",
-                "period": "10-11-2025 11:00",
-                "icon": "fa-solid fa-house"
-            }
-        ]
-    }
+    "spends": [
+        {
+            "category": "Car",
+            "value": 10000,
+            "remarks": "EMI",
+            "period": "10-11-2025 11:30",
+            "icon": "fa-solid fa-car"
+        },
+        {
+            "category": "Bike",
+            "value": 500,
+            "remarks": "Petrol",
+            "period": "10-11-2025 18:00",
+            "icon": "fa-solid fa-motorcycle"
+        },
+        {
+            "category": "Home",
+            "value": 2000,
+            "remarks": "Groceries",
+            "period": "10-11-2025 18:25",
+            "icon": "fa-solid fa-house"
+        },
+        {
+            "category": "Bills",
+            "value": 2000,
+            "remarks": "Electricity",
+            "period": "11-11-2025 10:13",
+            "icon": "fa-solid fa-file-lines"
+        },
+        {
+            "category": "Bills",
+            "value": 5000,
+            "remarks": "Credit Card",
+            "period": "11-11-2025 13:12",
+            "icon": "fa-solid fa-file-lines"
+        },
+        {
+            "category": "Bike",
+            "value": 1500,
+            "remarks": "Service",
+            "period": "12-11-2025 14:00",
+            "icon": "fa-solid fa-motorcycle"
+        }
+    ],
+    "estimations": [
+        {
+            "category": "Car",
+            "value": 10000,
+            "remarks": "EMI",
+            "period": "01-11-2025 11:30",
+            "icon": "fa-solid fa-car"
+        },
+        {
+            "category": "Car",
+            "value": 4000,
+            "remarks": "Petrol",
+            "period": "01-11-2025 11:31",
+            "icon": "fa-solid fa-car"
+        },
+        {
+            "category": "Bike",
+            "value": 1500,
+            "remarks": "Petrol",
+            "period": "01-11-2025 11:31",
+            "icon": "fa-solid fa-motorcycle"
+        },
+        {
+            "category": "Bike",
+            "value": 2000,
+            "remarks": "Service",
+            "period": "01-11-2025 11:31",
+            "icon": "fa-solid fa-motorcycle"
+        },
+        {
+            "category": "Home",
+            "value": 5000,
+            "remarks": "Groceries",
+            "period": "01-11-2025 13:16",
+            "icon": "fa-solid fa-house"
+        }
+    ],
+    "income": [
+        {
+            "category": "Salary",
+            "value": 30000,
+            "remarks": "Nov Salary",
+            "period": "01-11-2025 11:00",
+            "icon": "fa-solid fa-wallet"
+        },
+        {
+            "category": "House",
+            "value": 2500,
+            "remarks": "Rent",
+            "period": "10-11-2025 11:00",
+            "icon": "fa-solid fa-house"
+        }
+    ]
 }

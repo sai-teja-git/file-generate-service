@@ -58,29 +58,32 @@ export class AppService {
             const currencyCode = "INR"
             const pdfData = {
                 title: "Nov,2025 Overview",
-                spends: { total: this.currencyService.format(data.spends.total, currencyCode), icon: "fa-solid fa-coins" },
-                estimations: { total: this.currencyService.format(data.estimations.total, currencyCode), icon: "fa-solid fa-chart-line" },
-                income: { total: this.currencyService.format(data.income.total, currencyCode), icon: "fa-solid fa-wallet" },
+                spends: { total: this.currencyService.format(data.spends.reduce((prv, current) => current.value + prv, 0), currencyCode), icon: "fa-solid fa-coins" },
+                estimations: { total: this.currencyService.format(data.estimations.reduce((prv, current) => current.value + prv, 0), currencyCode), icon: "fa-solid fa-chart-line" },
+                income: { total: this.currencyService.format(data.income.reduce((prv, current) => current.value + prv, 0), currencyCode), icon: "fa-solid fa-wallet" },
                 tables: [
                     {
                         tableTitle: "Spends Summary",
-                        items: data.spends.data.map(e => ({ ...e, value: this.currencyService.format(e.value, currencyCode) })),
+                        items: data.spends.map(e => ({ ...e, value: this.currencyService.format(e.value, currencyCode) })),
                     },
                     {
                         tableTitle: "Estimations Summary",
-                        items: data.estimations.data.map(e => ({ ...e, value: this.currencyService.format(e.value, currencyCode) })),
+                        items: data.estimations.map(e => ({ ...e, value: this.currencyService.format(e.value, currencyCode) })),
                     },
                     {
                         tableTitle: "Income Summary",
-                        items: data.income.data.map(e => ({ ...e, value: this.currencyService.format(e.value, currencyCode) })),
+                        items: data.income.map(e => ({ ...e, value: this.currencyService.format(e.value, currencyCode) })),
                     },
                 ]
             }
 
-            const { buffer, ...result } = await this.pdfService.generatePdf(pdfData, "overview.html", "src/generated")
+            const { buffer, ...result } = await this.pdfService.generatePdf(pdfData, "overview.html");
+            // const { buffer, ...result } = await this.pdfService.generatePdf(pdfData, "overview.html", "src/generated");
+
             return {
                 status: HttpStatus.OK,
                 data: result,
+                file: Buffer.from(buffer).toString("base64")
             }
         } catch (error) {
             throw new HttpException(error.message, error.status ?? 500)
